@@ -80,7 +80,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md" style="color: blue">
+                <div class="title m-b-md" style="color: orange">
                     Laravel
                 </div>
 
