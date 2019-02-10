@@ -1,0 +1,22 @@
+<project name = "blogs project" default = "init-dev">
+    <target name="init-dev" depends="install-composer,change-permission">
+        <copy file = "environment/dev/dev.env" tofile = ".env"></copy>
+    </target>
+    <target name="install-composer">
+        <echo>Installing Composer</echo>
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+            <arg value="--prefer-dist" />
+            <arg value="--no-interaction"/>
+        </exec>
+    </target>
+    <target name="change-permission">
+        <echo>Change Permission</echo>
+        <chown owner="www-data" verbose="true">
+            <fileset dir="storage"/>
+            <dirset dir="storage"/>
+            <fileset dir="bootstrap/cache"/>
+            <dirset dir="bootstrap/cache"/>
+        </chown>
+    </target>
+</project>

@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+       - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravelproject
+      MYSQL_USER: febri
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "5001:3306"
+
+  web:
+    depends_on:
+      - db
+    image: febrihardians/php-nginx:latest
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "5000:80"
+
+volumes:
+    db_data: {}
